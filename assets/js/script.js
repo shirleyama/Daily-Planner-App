@@ -6,14 +6,15 @@ var saveButton = document.querySelector(".saveBtn");
 toDay.innerHTML = moment().format("dddd MMMM, Do");
 
 // Save button function
-function saveTodos(event) {
+function saveTodos(todoText) {
   event.preventDefault();
   console.log("Save button clicked");
-  var todoText = document.querySelector("textarea").value;
   console.log("Todo text: " + todoText);
-
   // Save todo text to local storage
-  localStorage.setItem("todos", JSON.stringify(todoText));
+  var todos = getTodos();
+  todos.push(todoText);
+  localStorage.setItem("todos", JSON.stringify(todos));
+  console.log(localStorage.getItem("todos"));
   eventInput.value = "";
   displayTodos();
 }
@@ -62,6 +63,13 @@ function displayTodos() {
     );
     currentHour++;
   }
+  timeBlocks.addEventListener("click", function (event) {
+    if (event.target.matches(".saveBtn")) {
+      var index = event.target.getAttribute("data-index");
+      var textArea = document.querySelectorAll(".description")[index];
+      saveTodos(textArea.value);
+    }
+  });
 }
 
 function addTodo(event) {
@@ -76,7 +84,7 @@ function addTodo(event) {
 
     if (!todoText) return;
     todos.push(todoText);
-    localStorage.setItem("todos", JSON.stringify(todos));
+    //saveTodos();
     eventInput.value = "";
     displayTodos();
   }
@@ -84,7 +92,7 @@ function addTodo(event) {
 
 function init() {
   eventInput.addEventListener("keydown", addTodo);
-  saveButton.addEventListener("click", saveTodos); //grabbing click event
+  // saveButton.addEventListener("click", saveTodos); //grabbing click event
 
   displayTodos();
 }
