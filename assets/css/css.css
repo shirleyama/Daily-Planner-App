@@ -1,0 +1,21 @@
+#calendar {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.time-block {
+  width: 100%;
+  height: 60px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-block input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+}
