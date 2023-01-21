@@ -28,6 +28,9 @@ textarea {
   border-radius: 0;
   border-bottom: 10px solid black;
 }
+.container {
+  margin-bottom: 50px;
+}
 
 .description {
   white-space: pre-wrap;
@@ -48,6 +51,8 @@ textarea {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
+  align-items: center;
+  justify-content: center;
 }
 
 .past {
