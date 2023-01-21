@@ -32,10 +32,10 @@ function displayTodos() {
     timeBlocks.innerHTML = "<p>No todos have been added.</p>";
   }
 
-  var currentTime = moment().format("h a");
+  var currentTime = moment().format("HH");
   var currentHour = 9;
-  for (var i = 0; i < 8; i++) {
-    var slotTime = moment().hour(currentHour).format("h a");
+  for (var i = 0; i <= 8; i++) {
+    var slotTime = moment().hour(currentHour).format("HH");
     if (currentTime === slotTime) {
       var status = "present";
     } else if (currentTime < slotTime) {
@@ -43,6 +43,7 @@ function displayTodos() {
     } else if (currentTime > slotTime) {
       var status = "past";
     }
+    var slotTime = moment().hour(currentHour).format("h a");
     var todo = todos[i] || "";
     timeBlocks.insertAdjacentHTML(
       "beforeend",
