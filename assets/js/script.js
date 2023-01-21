@@ -32,7 +32,7 @@ function displayTodos() {
     timeBlocks.innerHTML = "<p>No todos have been added.</p>";
   }
 
-  var currentTime = moment().format("HH");
+  var currentTime = moment().format("h a");
   var currentHour = 9;
   for (var i = 0; i < 8; i++) {
     var slotTime = moment().hour(currentHour).format("h a");
