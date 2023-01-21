@@ -7,7 +7,6 @@ toDay.innerHTML = moment().format("dddd MMMM, Do");
 
 // Save button function
 function saveTodos(todoText) {
-  event.preventDefault();
   console.log("Save button clicked");
   console.log("Todo text: " + todoText);
   // Save todo text to local storage
@@ -26,14 +25,13 @@ function getTodos() {
 }
 
 function displayTodos() {
-  console.log("display todos");
   var todos = getTodos();
-  // //clear todos
   timeBlocks.innerHTML = "";
 
   if (!todos.length) {
     timeBlocks.innerHTML = "<p>No todos have been added.</p>";
   }
+
   var currentTime = moment().format("HH");
   var currentHour = 9;
   for (var i = 0; i < 8; i++) {
@@ -45,30 +43,30 @@ function displayTodos() {
     } else if (currentTime > slotTime) {
       var status = "past";
     }
-    console.log(slotTime);
     var todo = todos[i] || "";
     timeBlocks.insertAdjacentHTML(
       "beforeend",
       `
       <div class="row time-block">
-      <div class="col-1 hour">${slotTime}</div>
-      <div class="col-10 text-area ${status}">
-        <textarea class="description">${todo} </textarea>
+        <div class="col-1 hour">${slotTime}</div>
+        <div class="col-10 text-area ${status}">
+          <textarea class="description" data-index=${i}>${todo} </textarea>
+        </div>
+        <div class="col-1 button-det">
+          <button data-index="${i}" class="btn saveBtn"><i class="fas fa-save"></i></button>
+        </div>
       </div>
-      <div class="col-1 button-det">
-        <button data-index="${i}" class="btn saveBtn"><i class="fas fa-save"></i></button>
-      </div>
-    </div>
     `
     );
     currentHour++;
   }
-  timeBlocks.addEventListener("click", function (event) {
-    if (event.target.matches(".saveBtn")) {
-      var index = event.target.getAttribute("data-index");
-      var textArea = document.querySelectorAll(".description")[index];
-      saveTodos(textArea.value);
-    }
+  var textAreas = document.querySelectorAll(".description");
+  textAreas.forEach(function (textArea, index) {
+    textArea.addEventListener("blur", function (event) {
+      var todos = getTodos();
+      todos[index] = event.target.value;
+      localStorage.setItem("todos", JSON.stringify(todos));
+    });
   });
 }
 
@@ -91,9 +89,6 @@ function addTodo(event) {
 }
 
 function init() {
-  eventInput.addEventListener("keydown", addTodo);
-  // saveButton.addEventListener("click", saveTodos); //grabbing click event
-
   displayTodos();
 }
 

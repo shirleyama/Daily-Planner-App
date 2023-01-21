@@ -8,13 +8,7 @@ This is a simple calendar application that allows a user to save events for each
 
 The password can include special characters.
 
-### The URL of the GitHub repository.
 
-[Shirley Thompson's Daily Planner App on GitHub repository](https://github.com/shirleyama/Daily-Planner-App)
-
-### The URL of the functional, deployed application on GitHub Pages.
-
-[Shirley Thompson's Daily Planner App](https://shirleyama.github.io/Daily-Planner-App/)
 
 ## Installation
 
