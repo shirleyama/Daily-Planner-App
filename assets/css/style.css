@@ -11,6 +11,15 @@ body {
   padding: 0;
 }
 
+.message {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.message span {
+  color: red;
+}
+
 textarea {
   background: transparent;
   border: none;

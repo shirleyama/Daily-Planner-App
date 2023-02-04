@@ -1,37 +1,33 @@
+var timeBlocks = document.querySelector(".container");
+var showMsg = document.querySelector(".message");
 var eventHour = document.querySelector(".hour");
 var eventInput = document.querySelector("textarea");
-var timeBlocks = document.querySelector(".container");
 var toDay = document.querySelector("#currentDay");
-var saveButton = document.querySelector(".saveBtn");
+
 toDay.innerHTML = moment().format("dddd MMMM, Do");
 
 // Save button function
 function saveTodos(todoText) {
-  console.log("Save button clicked");
-  console.log("Todo text: " + todoText);
   // Save todo text to local storage
   var todos = getTodos();
   todos.push(todoText);
   localStorage.setItem("todos", JSON.stringify(todos));
-  console.log(localStorage.getItem("todos"));
   eventInput.value = "";
   displayTodos();
 }
 
+//Gets the todos from local storage and if none returns an empty array
 function getTodos() {
-  console.log("get todos");
-  //checks local storage for todos and if none returns an empty array
+  console.log("get todos if any");
   return JSON.parse(localStorage.getItem("todos")) || [];
 }
 
 function displayTodos() {
   var todos = getTodos();
   timeBlocks.innerHTML = "";
-
   if (!todos.length) {
     timeBlocks.innerHTML = "<p>No todos have been added.</p>";
   }
-
   var currentTime = moment().format("HH");
   var currentHour = 9;
   for (var i = 0; i <= 8; i++) {
@@ -62,11 +58,26 @@ function displayTodos() {
     currentHour++;
   }
   var textAreas = document.querySelectorAll(".description");
-  textAreas.forEach(function (textArea, index) {
-    textArea.addEventListener("blur", function (event) {
+  // textAreas.forEach(function (textArea, index) {
+  //   textArea.addEventListener("change", function (event) {
+  //     var todos = getTodos();
+  //     todos[index] = event.target.value;
+  //     localStorage.setItem("todos", JSON.stringify(todos));
+  //   });
+  // });
+  var saveButtons = document.querySelectorAll(".saveBtn");
+  saveButtons.forEach(function (button, index) {
+    button.addEventListener("click", function (event) {
       var todos = getTodos();
-      todos[index] = event.target.value;
+      todos[index] = textAreas[index].value;
       localStorage.setItem("todos", JSON.stringify(todos));
+      if (todos.length) {
+        showMsg.innerHTML =
+          "<p>Appointment added to <span>local storage</span>	&#9989;</p>";
+        setTimeout(function () {
+          showMsg.innerHTML = "";
+        }, 5000); // the message will disappear after 5000 milliseconds (5 seconds)
+      }
     });
   });
 }
