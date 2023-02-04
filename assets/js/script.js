@@ -58,19 +58,15 @@ function displayTodos() {
     currentHour++;
   }
   var textAreas = document.querySelectorAll(".description");
-  // textAreas.forEach(function (textArea, index) {
-  //   textArea.addEventListener("change", function (event) {
-  //     var todos = getTodos();
-  //     todos[index] = event.target.value;
-  //     localStorage.setItem("todos", JSON.stringify(todos));
-  //   });
-  // });
   var saveButtons = document.querySelectorAll(".saveBtn");
+
   saveButtons.forEach(function (button, index) {
     button.addEventListener("click", function (event) {
       var todos = getTodos();
+
       todos[index] = textAreas[index].value;
       localStorage.setItem("todos", JSON.stringify(todos));
+
       if (todos.length) {
         showMsg.innerHTML =
           "<p>Appointment added to <span>local storage</span>	&#9989;</p>";
