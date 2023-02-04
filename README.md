@@ -1,14 +1,12 @@
 # Daily-Planner-App
 
-A simple calendar application that allows a user to save events for each hour of the day
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
+A simple calendar app.
 
 ## Description
 
 This is a simple calendar application that allows a user to save events for each hour of the day by modifying starter code. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
-
-The password can include special characters.
-
-
 
 ## Installation
 
@@ -16,9 +14,7 @@ To access the website click [Shirley Thompson's Daily Planner App](https://shirl
 
 ## Usage
 
-![Daily-Planner-App](assets/images/code-quiz-screenshot.png)
-
-## Credits
+![Daily-Planner-App](assets/images/daily-planner-screenshot.jpg)
 
 ### Resources:
 
